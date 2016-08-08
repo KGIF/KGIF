@@ -12,13 +12,30 @@ class App extends React.Component {
 			gifs: [],
 			searched: false,
 			totalCount: 100,
-			gifsPerPage: 100
+			gifsPerPage: 100,
+			favourites: []
 		};
+	}
+
+	addToFavs(newGif) {
+
+		console.log('haha favs!');
+		var favs = this.state.favourites.slice();
+		favs.push(newGif);
+		this.setState({favourites: favs});
+		console.log(this.state.favourites);
+	}
+
+	removeFromFavs() {
+
 	}
 
 	handleTermChange = (term, offset) => {
 		if(!offset) { offset = 1; }
-		if(!term) { return; }
+		if(!term || term === '') { 
+			this.setState({searched: false});
+			return; 
+		}
 
 		if(offset >= this.state.totalCount - this.state.gifsPerPage) {
 			offset = this.state.gifsPerPage - 100 - 1;
@@ -30,18 +47,44 @@ class App extends React.Component {
 
 		request.get(url, function (err, res) {
 			console.log(res);
-			self.setState({ gifs: res.body.data, totalCount: res.body.pagination.total_count  });
+			self.setState({ gifs: res.body.data, totalCount: res.body.pagination.total_count, searched: true  });
 		});
 	}
 
 	render() {
-		return (
+
+		const main = (
 			<div>
-				<h1>KGIF</h1>
-				<SearchBar onTermChange={this.handleTermChange} />
-				<GifList gifs={this.state.gifs} />
+			<h1>KGIF</h1>
+			<SearchBar onTermChange={this.handleTermChange} />
 			</div>
-		);
+		)
+
+		const searchComplete = (
+			<div>
+				<div>
+					<h2>Favs</h2>
+					<GifList gifs={this.state.favourites} onFavAdded={() => {console.log('already faved')}}/>
+				</div>
+				<h2>Results</h2>
+				<GifList gifs={this.state.gifs} onFavAdded={this.addToFavs.bind(this)}/>
+			</div>
+		)
+
+		if(this.state.searched || this.state.favourites.length > 0) {
+			return (
+				<div>
+					{main}
+					{searchComplete}
+				</div>
+			)
+		} else {
+			return (
+				<div>
+					{main}
+				</div>
+			)
+		}
 	}
 }
 

@@ -7,6 +7,7 @@ class GifItem extends React.Component {
 		this.state = {
 			loaded: false,
 			showGif: false,
+			faved: false
 		}
 	}
 
@@ -25,6 +26,12 @@ class GifItem extends React.Component {
 
 	hideGif() {
 		this.setState({showGif: false});
+	}
+
+	addFav(e) {
+		e.preventDefault();
+		this.props.onFavAdded(this.props.gif);
+		this.setState({faved: true});
 	}
 
 	render() {
@@ -55,6 +62,8 @@ class GifItem extends React.Component {
 				onLoad={this.handleImageLoaded.bind(this)}
 				onError={this.handleImageErrored.bind(this)}/>
 				<p>{this.state.loaded}</p>
+
+				<a href="#" onClick={this.addFav.bind(this)}>Favourite </a>
 			</li>
 		);
 	}
