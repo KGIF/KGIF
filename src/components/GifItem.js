@@ -7,7 +7,6 @@ class GifItem extends React.Component {
 		this.state = {
 			loaded: false,
 			showGif: false,
-			// gifUrl: ''
 		}
 	}
 
@@ -21,23 +20,17 @@ class GifItem extends React.Component {
 	}
 
 	showGif() {
-		console.log('show gif');
-		var self = this;
 		this.setState({showGif: true});
-		// this.setState({showGif: true, gifUrl: self.props.gif.images.downsized_still.url});
 	}
 
 	hideGif() {
-		console.log('hide gif');
 		this.setState({showGif: false});
-		// this.setState({showGif: true, gifUrl: self.props.gif.images.downsized.url});
 	}
 
 	render() {
 		let loading = '';
 		let gifUrl = '';
-		// let gifUrl = this.props.gif.images.downsized_still.url;
-		// console.log(this.props.gif.images);
+		const gifSize = parseInt(this.props.gif.images.downsized.size);
 
 		if(!this.state.loaded) {
 			loading = <div className="placeholder"></div>
@@ -49,9 +42,9 @@ class GifItem extends React.Component {
 			gifUrl = this.props.gif.images.downsized.url;
 		}
 
-		// if(!this.state.showGif) {
-		// 	gifUrl = this.props.gif.images.downsized.url;
-		// }
+		if(gifSize >= 2000000) {
+			return;
+		}
 
 		return (
 			<li className="gif-item">
