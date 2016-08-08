@@ -27,11 +27,28 @@ class SearchBar extends React.Component {
 		this.onInputChange(term, random);
 	}
 
+	getRandomIntroGif() {
+		const randomGifs = [
+			'http://media2.giphy.com/media/l41lFw057lAJQMwg0/giphy.gif',
+			'http://media1.giphy.com/media/l0O7OwJdwnJVBX0g8/giphy.gif',
+			'https://media1.giphy.com/media/3rkUUrLNhXqSI/giphy.gif',
+			'http://media.giphy.com/media/NVVT5VulwmNDq/giphy-tumblr.gif',
+			'http://media1.giphy.com/media/l41lFw057lAJQMwg0/giphy.gif',
+			'http://media2.giphy.com/media/xTiTnwLNe6sSsySBNu/giphy.gif',
+			'https://media4.giphy.com/media/bBF08hG8kbLdS/giphy.gif',
+		];
+		const randomIndex = Math.floor(Math.random()*randomGifs.length);
+		console.log(randomIndex)
+		const gif = randomGifs[randomIndex];
+
+		return gif;
+	}
+
 	render() {
 		return (
 			<div className="search">
-				<h2>Search for gifs son!</h2>
-				<img src='http://media1.giphy.com/media/xTiTnwLNe6sSsySBNu/giphy.gif' />
+				<h2>Where are al the gifs? Right here!!</h2>
+				<img src={this.getRandomIntroGif()} />
 				<input onChange={event => this.onInputChange(event.target.value)} placeholder="Search here!"/>
 				<a className="button" onClick={event => this.random(this.state.term)}>Random page</a>
 

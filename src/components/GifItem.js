@@ -34,6 +34,11 @@ class GifItem extends React.Component {
 		this.setState({faved: true});
 	}
 
+	removeFav(e) {
+		e.preventDefault();
+		this.props.onFavRemove(this.props.gif);
+	}
+
 	render() {
 		let loading = '';
 		let gifUrl = '';
@@ -53,6 +58,16 @@ class GifItem extends React.Component {
 			return;
 		}
 
+		let favButton = (<span></span>);
+		if(!this.state.faved && !this.props.favourite) {
+			favButton = (<a href="#" onClick={this.addFav.bind(this)}>Favourite </a>);
+		}
+
+		if(this.props.favourite) {
+			favButton = (<a href="#" onClick={this.removeFav.bind(this)}>Remove</a>);
+		}
+
+
 		return (
 			<li className="gif-item">
 				{ loading }
@@ -62,8 +77,8 @@ class GifItem extends React.Component {
 				onLoad={this.handleImageLoaded.bind(this)}
 				onError={this.handleImageErrored.bind(this)}/>
 				<p>{this.state.loaded}</p>
-
-				<a href="#" onClick={this.addFav.bind(this)}>Favourite </a>
+				{favButton}
+				
 			</li>
 		);
 	}
