@@ -20,10 +20,7 @@ class SearchBar extends React.Component {
 	}
 
 	random(term) {
-		console.log('random is kicking off');
-		console.log(term);
 		let random = Math.floor(Math.random() * (1000 - 101 + 1)) + 101;
-		console.log(random);
 		this.onInputChange(term, random);
 	}
 
@@ -38,7 +35,6 @@ class SearchBar extends React.Component {
 			'https://media4.giphy.com/media/bBF08hG8kbLdS/giphy.gif',
 		];
 		const randomIndex = Math.floor(Math.random()*randomGifs.length);
-		console.log(randomIndex)
 		const gif = randomGifs[randomIndex];
 
 		return gif;

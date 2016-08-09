@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
 	build: path.join(__dirname, 'build'),
@@ -39,6 +40,9 @@ module.exports = {
 	},
 
 	plugins: [
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new CopyWebpackPlugin([
+            { from: 'static' }
+        ])
 	]
 }
