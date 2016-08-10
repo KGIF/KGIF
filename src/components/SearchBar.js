@@ -26,12 +26,12 @@ class SearchBar extends React.Component {
 
 	getRandomIntroGif() {
 		const randomGifs = [
-			'http://media2.giphy.com/media/l41lFw057lAJQMwg0/giphy.gif',
-			'http://media1.giphy.com/media/l0O7OwJdwnJVBX0g8/giphy.gif',
+			'https://media2.giphy.com/media/l41lFw057lAJQMwg0/giphy.gif',
+			'https://media1.giphy.com/media/l0O7OwJdwnJVBX0g8/giphy.gif',
 			'https://media1.giphy.com/media/3rkUUrLNhXqSI/giphy.gif',
-			'http://media.giphy.com/media/NVVT5VulwmNDq/giphy-tumblr.gif',
-			'http://media1.giphy.com/media/l41lFw057lAJQMwg0/giphy.gif',
-			'http://media2.giphy.com/media/xTiTnwLNe6sSsySBNu/giphy.gif',
+			'https://media.giphy.com/media/NVVT5VulwmNDq/giphy-tumblr.gif',
+			'https://media1.giphy.com/media/l41lFw057lAJQMwg0/giphy.gif',
+			'https://media2.giphy.com/media/xTiTnwLNe6sSsySBNu/giphy.gif',
 			'https://media4.giphy.com/media/bBF08hG8kbLdS/giphy.gif',
 		];
 		const randomIndex = Math.floor(Math.random()*randomGifs.length);
