@@ -61,7 +61,7 @@ class App extends React.Component {
 			offset = this.state.gifsPerPage - 100 - 1;
 		}
 
-		const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=dc6zaTOxFJmzC&limit=100&rating=pg-13&offset=` + offset;
+		const url = `https://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=dc6zaTOxFJmzC&limit=100&rating=pg-13&offset=` + offset;
 		console.log('newRequest', url);
 		var self = this;
 
